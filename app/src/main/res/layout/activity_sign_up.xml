@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".SignUp">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +16,8 @@
         android:layout_marginRight="8dp"
         android:orientation="vertical">
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+      <!--
+      <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtphone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +30,10 @@
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="11"
             app:met_primaryColor="@android:color/black"
-            app:met_singleLineEllipsis="true" />
+            app:met_singleLineEllipsis="true"/>
+
+            -->
+
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtName"
             android:layout_width="match_parent"
@@ -48,7 +53,7 @@
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="phonenumber"
+            android:hint="Password"
             android:inputType="textPassword"
             android:text="123456"
             android:textColorHint="@android:color/white"
@@ -59,16 +64,20 @@
             app:met_primaryColor="@android:color/black"
             app:met_singleLineEllipsis="true" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/signUp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:text="Sign Up "
+            android:text="Sign Up"
             android:textColor="@color/colorPrimary"
-            />
+            app:fButtonColor="@android:color/holo_blue_dark"
+            app:shadowEnabled="true"
+            app:shadowHeight="5dp"
+            app:cornerRadius="5dp"
+            app:shadowColor="@android:color/black"/>
     </LinearLayout>
 
 </RelativeLayout>

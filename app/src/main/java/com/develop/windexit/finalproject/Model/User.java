@@ -9,6 +9,7 @@ public class User {
     private String Password;
     private String Phone;
     private String IsStaff;
+    private String homeAddress;
 
     public User() {
     }
@@ -50,5 +51,13 @@ public class User {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
     }
 }

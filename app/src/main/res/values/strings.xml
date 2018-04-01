@@ -6,4 +6,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="facebook_app_idd">866039636901572</string>
+    <string name="facebook_login_protocol_name">fb866039636901572</string>
 </resources>

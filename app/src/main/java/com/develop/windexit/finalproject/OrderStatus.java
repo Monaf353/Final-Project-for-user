@@ -1,6 +1,7 @@
 package com.develop.windexit.finalproject;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,11 +25,42 @@ public class OrderStatus extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference requests;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_status);
+
+        //view
+        swipeRefreshLayout = findViewById(R.id.swipe_layout_order_status);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh()
+            {
+                if (getIntent() == null) {
+                    loadOrders(Common.currentUser.getPhone());
+                } else {
+                    loadOrders(getIntent().getStringExtra("userPhone"));
+                }
+            }
+        });
+
+        //Default, load for first time
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run()
+            {
+                if (getIntent() == null) {
+                    loadOrders(Common.currentUser.getPhone());
+                } else {
+                    loadOrders(getIntent().getStringExtra("userPhone"));
+                }
+            }
+        });
 
 
         database = FirebaseDatabase.getInstance();
@@ -39,15 +71,18 @@ public class OrderStatus extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        if (getIntent() == null) {
+
+
+        /*if (getIntent() == null) {
             loadOrders(Common.currentUser.getPhone());
         } else {
             loadOrders(getIntent().getStringExtra("userPhone"));
-        }
+        }*/
     }
 
     private void loadOrders(String phone) {
-        adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(
+
+       adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(
                 Request.class,
                 R.layout.order_layout,
                 OrderViewHolder.class,
@@ -69,9 +104,47 @@ public class OrderStatus extends AppCompatActivity {
                 });
 
             }
+
         };
         recyclerView.setAdapter(adapter);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
 
 }
+
+
+
+/*
+ Query query = requests.orderByChild("phone").equalTo(phone);
+        //create option
+        FirebaseRecyclerOptions<Request> Options = new FirebaseRecyclerOptions.Builder<Request>()
+                .setQuery(query, Request.class)
+                .build();
+
+        adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(Options) {
+            @Override
+            protected void onBindViewHolder(@NonNull OrderViewHolder viewHolder, int position, @NonNull Request model) {
+
+                viewHolder.txtOrderId.setText(adapter.getRef(position).getKey());
+                viewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(model.getStatus()));
+                viewHolder.txtOrderAddress.setText(model.getAddress());
+                viewHolder.txtOrderPhone.setText(model.getPhone());
+
+                viewHolder.setItemCliclListener(new ItemCliclListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        ////later
+                    }
+                });
+            }
+
+            @Override
+            public OrderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View itemView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.order_layout,parent,false);
+
+                return new OrderViewHolder(itemView);
+            }
+
+ */

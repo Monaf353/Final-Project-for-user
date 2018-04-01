@@ -13,8 +13,8 @@ import com.develop.windexit.finalproject.R;
  */
 
 public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView food_name;
-    public ImageView food_image;
+    public TextView food_name,food_price;
+    public ImageView food_image,fav_image,btnShare,btn_quick_cart;
 
     private ItemCliclListener itemCliclListener;
 
@@ -23,6 +23,11 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         food_name =  itemView.findViewById(R.id.food_name);
         food_image =  itemView.findViewById(R.id.food_image);
+        fav_image =  itemView.findViewById(R.id.fav);
+        btnShare = itemView.findViewById(R.id.btnShare);
+        food_price = itemView.findViewById(R.id.food_price);
+        btn_quick_cart = itemView.findViewById(R.id.btn_quick_cart);
+
         itemView.setOnClickListener(this);
     }
 

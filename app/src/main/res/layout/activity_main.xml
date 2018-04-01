@@ -14,24 +14,33 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/btnsign"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:text="sign in"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorPrimary"
+            app:fButtonColor="@android:color/holo_blue_dark"
+            app:shadowColor="@android:color/black"
+            app:shadowEnabled="true"
+            app:cornerRadius="4dp"
+            app:shadowHeight="5dp"/>
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/btnregister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:text="Register"
-            android:textColor="@color/colorPrimary" />
-
+            android:textColor="@color/colorPrimary"
+            app:fButtonColor="@android:color/holo_blue_dark"
+            app:shadowColor="@android:color/black"
+            app:shadowEnabled="true"
+            app:cornerRadius="4dp"
+            app:shadowHeight="5dp"/>
 
     </LinearLayout>
 
